@@ -1,12 +1,13 @@
+import Footer from "./components/Footer"
+import Home from "./Pages/Home"
 
-import './App.css'
-import { Card } from './components/Card'
 function App() {
 
   return (
-    <>
-      <Card/>
-    </>
+    <div className="bg-yellow-400">
+      <Home/>
+      <Footer/>
+    </div>
   )
 }
 
