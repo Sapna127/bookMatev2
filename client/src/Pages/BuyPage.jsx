@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
 import BookContainer from '../components/BookContainer';
-import Card from '../components/Card';
 import Buybtn from '../components/Buybtn';
 function BuyPage() {
   return (
