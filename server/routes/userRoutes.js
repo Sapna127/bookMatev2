@@ -3,8 +3,10 @@ const { register, login, getUser, updateUser } = require('../controller/userCont
 const { protect } = require('../middleware/authmiddleware.js');
 const router = express.Router();
 
+console.log(`User route`);
+
 router.post('/register', register);
-router.post('/login', login);
+router.post('/login', protect, login);
 router.get('/profile', protect, getUser);
 router.put('/profile', protect, updateUser);
 

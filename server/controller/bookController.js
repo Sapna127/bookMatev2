@@ -7,7 +7,8 @@ const bookSchema = z.object({
   publication: z.string().min(1),
   tags: z.array(z.string()),
   description: z.string().optional(),
-  pictures: z.array(z.string().url())
+  pictures: z.array(z.string().url()),
+  sellerId: z.string().min(1),
 });
 
 const addBook = async (req, res) => {

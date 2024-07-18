@@ -1,44 +1,58 @@
-const User = require('../models/User');
+const User = require('../models/user');
 // const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { z } = require('zod');
 
 const registerSchema = z.object({
-  username: z.string().min(3),
-  email: z.string().email(),
-  password: z.string().min(6)
-});
-
+    name: z.string().min(3),
+    email: z.string().email(),
+    password: z.string().min(6),
+    role: z.enum(['buyer', 'seller'])
+  });
 const loginSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6)
 });
 
 const register = async (req, res) => {
-  try {
-    const { username, email, password } = registerSchema.parse(req.body);
-
-    const userExists = await User.findOne({ email });
-    if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
+    console.log("register function");
+    try {
+      const validationResponse = registerSchema.safeParse(req.body);
+      if (!validationResponse.success) {
+        return res.status(400).json({
+          message: `Error while signing up: ${validationResponse.error.errors[0].message}`
+        });
+      }
+  
+      const { name, email, password, role } = validationResponse.data;
+      console.log("username",name);
+        console.log("email",email);
+        console.log("password",password);
+        console.log("role",role);
+      const userExists = await User.findOne({ email });
+      if (userExists) {
+        return res.status(400).json({ message: 'User already exists' });
+      }
+  
+      const user = await User.create({
+        name,
+        email,
+        password,
+        role
+      });
+  
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
+  
+      res.status(201).json({
+        message: "User created successfully",
+        token
+      });
+    } catch (error) {
+        console.log("register error");
+        console.log(error);
+      res.status(500).json({ message: error.message });
     }
-
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(password, salt);
-
-    const user = await User.create({
-      username,
-      email,
-      password: password
-    });
-
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
-
-    res.status(201).json({ token });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+  };
 
 const login = async (req, res) => {
   try {
@@ -63,6 +77,7 @@ const login = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
+  console.log("getuser")
   try {
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);

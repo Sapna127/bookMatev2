@@ -9,5 +9,5 @@ const userSchema = new mongoose.Schema({
   booksForSell: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Book' }]
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('user', userSchema);
 

@@ -1,9 +1,11 @@
-const User = require('../models/User');
+const User = require('../models/user');
 const Book = require('../models/Book');
 const { z } = require('zod');
 
 const purchaseBookSchema = z.object({
-  bookId: z.string().min(1)
+  userId: z.string().min(1),
+  bookId: z.string().min(1),
+
 });
 
 const purchaseBook = async (req, res) => {
