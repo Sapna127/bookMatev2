@@ -7,16 +7,15 @@ const user = {
 };
 
 const navigation = [
-  { name: 'Home', href: '#', current: true },
-  { name: 'Books', href: '#', current: false },
-  { name: 'Sell', href: '#', current: false },
-  { name: 'Buy', href: '#', current: false },
+  { name: 'Home', href: '/', current: true },
+  { name: 'Books', href: '/allbooks', current: false },
+  { name: 'Sell', href: '/sell', current: false },
+  { name: 'Buy', href: '/buy', current: false },
 ];
 
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Your Profile', href: '/profile' },
+  { name: 'Sign out', href: '/' },
 ];
 
 function classNames(...classes) {
