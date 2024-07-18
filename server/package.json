@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon"
+    "test": "mocha 'tests/**/*.js'",
+    "start": "nodemon",
+    "coverage": "nyc --reporter=html --reporter=text mocha 'tests/**/*.js'"
   },
   "author": "",
   "license": "ISC",
@@ -17,5 +18,12 @@
     "mongoose": "^8.5.1",
     "react-router-dom": "^6.24.1",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "mocha": "^8.4.0",
+    "mongodb-memory-server": "^10.0.0",
+    "nyc": "^17.0.0",
+    "supertest": "^7.0.0"
   }
 }
