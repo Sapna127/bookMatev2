@@ -37,7 +37,7 @@ function Home() {
       </div>
 
       {/* knows us  */}
-      <div className='flex flex-row bg-[#FAEFE3] gap-52'>
+      <div className='flex flex-row bg-[#FAEFE3] gap-52 w-full h-[400px] items-center'>
       <div className='relative flex items-center justify-end w-[450px] h-[300px]'>
           <div className=' right-0 w-full h-[400px] bg-yellow-500 rounded-r-full overflow-hidden'>
           <img src={know} alt="Your SVG description" className='relative w-auto h-auto max-w-full max-h-full' />
