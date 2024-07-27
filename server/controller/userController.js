@@ -16,6 +16,8 @@ const loginSchema = z.object({
 
 const register = async (req, res) => {
     console.log("register function");
+    const { name, email, password, role } = req.body;
+    console.log(`Received data: ${name}, ${email}, ${password}, ${role}`);
     try {
       const validationResponse = registerSchema.safeParse(req.body);
       if (!validationResponse.success) {
@@ -45,7 +47,13 @@ const register = async (req, res) => {
   
       res.status(201).json({
         message: "User created successfully",
-        token
+        token,
+        user: {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role
+        }
       });
     } catch (error) {
         console.log("register error");

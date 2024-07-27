@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+// import { UserContext } from '../contexts/UserContext';
 
-function Signin() {
+function Signin({ switchToSignup }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const { signin } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,10 +14,10 @@ function Signin() {
         email,
         password,
       });
-
-      if (response.status === 200) {
+      console.log(response.status)
+      if (response.status === 201) {
+        signin(response.data); 
         console.log('Signin successful', response.data);
-        // Handle successful sign-in (e.g., redirect or show a message)
       } else {
         console.error('Signin error', response.statusText);
       }
@@ -45,9 +47,16 @@ function Signin() {
           />
           <button
             type="submit"
-            className="w-full h-12 px-4 py-2 text-white bg-black rounded-lg hover:bg-black"
+            className="w-full h-12 px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
           >
             Sign In
+          </button>
+          <button
+            type="button"
+            onClick={switchToSignup}
+            className="w-full h-12 px-4 py-2 text-blue-600 hover:underline"
+          >
+            New user? Sign up
           </button>
         </form>
       </div>

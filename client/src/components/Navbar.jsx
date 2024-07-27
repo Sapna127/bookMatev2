@@ -37,14 +37,14 @@ export default function Navbar() {
             </div>
             
           </div>
-          <div className="relative z-0 flex-1 px-2 flex items-center justify-center sm:absolute sm:inset-0">
+          {/* <div className="relative z-0 flex-1 px-2 flex items-center justify-center sm:absolute sm:inset-0">
             <div className="w-full sm:max-w-xs">
               <label htmlFor="search" className="sr-only">Search</label>
               <div className="relative">
                 <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                  {/* <svg className="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35m-3.65-1.65a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0zm0 0H7m8-4h.01" />
-                  </svg> */}
+                  </svg>
                 </div>
                 <input
                   id="search"
@@ -55,7 +55,7 @@ export default function Navbar() {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="relative z-10 flex items-center lg:hidden">
             <button
               type="button"

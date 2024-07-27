@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function FileUpload() {
+function FileUpload({ onUpload }) {
+  const [imageUrl, setImageUrl] = useState(null);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setImageUrl(url);
+      if (onUpload) {
+        onUpload(file);
+      }
+    }
+  };
+
   return (
-    <div className="flex items-center justify-center w-[1010px]">
+    <div className="flex flex-col items-center justify-center w-[1010px]">
       <label
         htmlFor="dropzone-file"
-        className="flex flex-col items-center justify-center w-full h-55  rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-50 dark:bg-white hover:bg-gray-50 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+        className="flex flex-col items-center justify-center w-full h-55 rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-100 dark:bg-white hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
       >
         <div className="flex flex-col items-center justify-center pt-5 pb-6">
           <svg
@@ -30,8 +43,19 @@ function FileUpload() {
             SVG, PNG, JPG or GIF (MAX. 800x400px)
           </p>
         </div>
-        <input id="dropzone-file" type="file" className="hidden" />
+        <input
+          id="dropzone-file"
+          type="file"
+          className="hidden"
+          onChange={handleFileChange}
+        />
       </label>
+      {imageUrl && (
+        <div className="mt-4">
+          {/* <img src={imageUrl} alt="Uploaded Preview" className="max-w-full h-auto" /> */}
+          <p>Image uploaded!</p>
+        </div>
+      )}
     </div>
   );
 }

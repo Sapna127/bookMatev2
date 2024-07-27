@@ -22,8 +22,8 @@ const addBook = async (req, res) => {
     console.log("Time taken: ", Date.now() - start)
     res.status(201).json(book);
   } catch (error) {
-    console.log("addBook failed")
-    res.status(400).json({ message: error.message });
+    // console.log("addBook failed")
+    res.status(400).json("failed adding book");
   }
 };
 
