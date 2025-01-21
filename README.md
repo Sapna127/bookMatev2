@@ -2,8 +2,6 @@
 
 This project is a web application for buying and selling books.  It uses a client-server architecture with a React frontend and a Node.js/Express backend.
 
-![image](https://github.com/user-attachments/assets/cfa76152-f0d8-4961-a311-a1a9c456dba8)
-
 
 ## Features and Functionality
 
